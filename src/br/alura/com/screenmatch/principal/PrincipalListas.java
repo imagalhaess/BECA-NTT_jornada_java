@@ -5,6 +5,8 @@ import br.alura.com.screenmatch.models.Serie;
 import br.alura.com.screenmatch.models.Title;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class PrincipalListas {
     public static void main(String[] args) {
@@ -27,5 +29,12 @@ public class PrincipalListas {
                 System.out.println("Classificação: " + movies.getRank());
             }
         }
+
+        System.out.println("Lista de filmes ordenados por nome:");
+        Collections.sort(titlesArrayList);
+        System.out.println(titlesArrayList);
+        System.out.println("Lista de filmes ordenados por ano:");
+        titlesArrayList.sort(Comparator.comparing(Title::getReleaseYear));
+        System.out.println(titlesArrayList);
     }
 }
