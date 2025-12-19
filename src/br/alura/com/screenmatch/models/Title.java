@@ -13,6 +13,12 @@ public class Title implements Comparable <Title>{
         this.releaseYear = releaseYear;
     }
 
+    public Title(TitleOmdb myTitleOmdb) {
+        this.name = myTitleOmdb.title();
+        this.releaseYear = Integer.valueOf(myTitleOmdb.year());
+        this.durationInMinutes = Integer.valueOf(myTitleOmdb.runtime().substring(0, 3));
+    }
+
     public String getName() {
         return name;
     }
@@ -58,5 +64,12 @@ public class Title implements Comparable <Title>{
     @Override
     public int compareTo(Title anotherTitle) {
         return this.getName().compareTo(anotherTitle.getName());
+    }
+
+    @Override
+    public String toString() {
+        return "name='" + name + '\'' +
+                ", releaseYear=" + releaseYear +
+                ", duration=" + durationInMinutes;
     }
 }
