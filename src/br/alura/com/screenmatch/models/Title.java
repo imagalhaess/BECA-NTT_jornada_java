@@ -1,5 +1,7 @@
 package br.alura.com.screenmatch.models;
 
+import br.alura.com.screenmatch.exception.ConversionYearAndRuntimeError;
+
 public class Title implements Comparable <Title>{
     private String name;
     private int releaseYear;
@@ -13,10 +15,27 @@ public class Title implements Comparable <Title>{
         this.releaseYear = releaseYear;
     }
 
-    public Title(TitleOmdb myTitleOmdb) {
+    public Title(TitleOmdb myTitleOmdb) throws ConversionYearAndRuntimeError {
         this.name = myTitleOmdb.title();
-        this.releaseYear = Integer.valueOf(myTitleOmdb.year());
-        this.durationInMinutes = Integer.valueOf(myTitleOmdb.runtime().substring(0, 3));
+        if (myTitleOmdb.year().length() >= 4) {
+            this.releaseYear = Integer.valueOf(myTitleOmdb.year().substring(0, 4));
+        }
+        try {
+            var runtime = myTitleOmdb.runtime().substring(0, 3);
+            StringBuilder intChars = new StringBuilder();
+            for (char ch : runtime.toCharArray()) {
+                if (Character.isDigit(ch)) {
+                    intChars.append(ch);
+                }
+            } if (intChars.isEmpty()) {
+                throw new ConversionYearAndRuntimeError("Não há informações sobre a duração. Usaremos" +
+                                                                " um valor padrão de zero.");
+            }
+            this.durationInMinutes = Integer.parseInt(intChars.toString());
+        } catch (ConversionYearAndRuntimeError e){
+            System.out.println(e.getMessage());
+            this.durationInMinutes = 0;
+        }
     }
 
     public String getName() {
@@ -68,8 +87,9 @@ public class Title implements Comparable <Title>{
 
     @Override
     public String toString() {
-        return "name='" + name + '\'' +
-                ", releaseYear=" + releaseYear +
-                ", duration=" + durationInMinutes;
+            return "name='" + name + '\'' +
+                    ", releaseYear=" + releaseYear +
+                    ", duration=" + durationInMinutes;
+        }
     }
-}
+
