@@ -1,0 +1,26 @@
+[
+  {
+    "Name": "Top Gun",
+    "ReleaseYear": 1986,
+    "IncludedInPlan": false,
+    "SumOfReviews": 0.0,
+    "DurationInMinutes": 110,
+    "TotalReviews": 0
+  },
+  {
+    "Name": "Jurassic Park",
+    "ReleaseYear": 1993,
+    "IncludedInPlan": false,
+    "SumOfReviews": 0.0,
+    "DurationInMinutes": 127,
+    "TotalReviews": 0
+  },
+  {
+    "Name": "Dogville",
+    "ReleaseYear": 2003,
+    "IncludedInPlan": false,
+    "SumOfReviews": 0.0,
+    "DurationInMinutes": 171,
+    "TotalReviews": 0
+  }
+]

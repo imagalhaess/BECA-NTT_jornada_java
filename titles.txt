@@ -1,0 +1,1 @@
+name='Jurassic Park', releaseYear=1993, duration=127
